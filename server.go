@@ -6,18 +6,18 @@ import (
 	"log"
 	"net"
 	"strings"
+	"time"
 )
 
+//handler function
 func handleConnection(conn net.Conn) {
-	fmt.Println("Inside function")
 	defer conn.Close()
 	scanner := bufio.NewScanner(conn)
 	for scanner.Scan() {
 
-		// will listen for message to process ending in newline (\n)
 		message := scanner.Text()
-		// output message received
-		fmt.Print("Message Received:", message)
+
+		fmt.Print("Message Received is:", message)
 
 		newmessage := strings.ToUpper(message)
 		// send new string back to client
@@ -27,22 +27,31 @@ func handleConnection(conn net.Conn) {
 }
 
 func main() {
-	fmt.Println("Launching server...")
-	fmt.Println("Listen on port")
-	ln, err := net.Listen("tcp", "127.0.0.1:8081")
+	fmt.Println("Server is running")
+	time1 := time.Now()
+	ln, err := net.Listen("tcp", "127.0.0.1:4040")
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	fmt.Println("Accept connection on port")
+	// run connection function as routine
 	for {
 		conn, err := ln.Accept()
 		if err != nil {
 			log.Fatal(err)
 		}
 
-		fmt.Println("Calling handleConnection")
 		go handleConnection(conn)
+
+		// have a timeout so server isnt running too long
+		go func() {
+			<-time.After(time.Duration(10) * time.Second)
+			conn.Close()
+		}()
+
 	}
+
+	log.Println(time.Since(time1))
+	fmt.Println("Server closed")
 
 }
