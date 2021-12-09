@@ -8,28 +8,29 @@ This project simulates a Network Denial of Service through a method of a TCP SYN
 
 Input and Output
 ----
-## server.go Input
+### server.go Input
 The input will ask the user to specify the amount of GOMAXPROCS() to use
 
-## server.go Output
+### server.go Output
 The output will reflect the amount of clients that have connected to the server and the time each client connected since the start of the server running.
 
-## flood.go Input
+### flood.go Input
 The input will consist of the amount of clients to send to the target server as well as the amount of GOMAXPROCS() to utilize when running.
 
-## flood.go Output
+### flood.go Output
 currently there is no output
 
 How to Run:
 ----
-clone the repository : ' git clone https://github.com/justinG31/TCPserver.git '
 
+### 1. Clone the repository:
+`git clone https://github.com/justinG31/TCPserver.git`
 
-## Run server using one terminal window
-go run server.go
+### 2. Run server using one terminal window and follow input prompts
+`go run server.go`
 
-## Run client(s) using another terminal window
-go run flood.go
+### 3. Run client(s) using another terminal window and follow input prompts
+`go run flood.go`
 
 
 
