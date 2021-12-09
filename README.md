@@ -3,7 +3,7 @@ Justin Gomez, Sebastian Fernandez, Gabriella Munger
 
 Description
 ----
-This project simulates a Network Denial of Service through a method of a TCP SYN flood attack. The prrogram simulates the attack by the flood.go acting as the adversary performing the TCP SYN flood attack. The file flood.go asks a user to input the amount of clients to send to the server as well as the amount of GOMAXPROCS() to utilize. The server, server.go, asks the user for the amount of GOMAXPROCS() to utilize than starts running the server. Once the server is running, it will run until receiving and EOF interrupt cammand i.e. "CRTL-C" or when an abundance of clients can succesfully trigger the server to stop running. 
+This project simulates a Network Denial of Service through a method of a TCP SYN flood attack. The program simulates the attack by the flood.go acting as the adversary performing the TCP SYN flood attack. The file flood.go asks a user to input the amount of clients to send to the server as well as the amount of GOMAXPROCS() to utilize on the "client" end. The server, server.go, asks the user for the amount of GOMAXPROCS() to utilize on the server end, and then starts running the server. Once the server is running, it will run until receiving an EOF interrupt command (i.e. "CRTL-C") or when an abundance of clients can succesfully trigger the server fail.
 
 
 Input and Output
@@ -25,10 +25,10 @@ How to Run:
 clone the repository : ' git clone https://github.com/justinG31/TCPserver.git '
 
 
-## Run server
+## Run server using one terminal window
 go run server.go
 
-## Run client(s)
+## Run client(s) using another terminal window
 go run flood.go
 
 
